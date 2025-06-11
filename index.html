@@ -132,36 +132,42 @@
                 transform: translateX(100px) rotate(360deg);
             }
         }
-        /* Contador dinâmico bonito */
+        /* Contador SEPARADO e SIMÉTRICO */
         #contador {
-            font-size: 2em;
-            margin: 20px auto;
-            color: #fff;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
             background: linear-gradient(135deg, #ff4d6d, #ff99aa);
+            padding: 20px;
             border-radius: 16px;
-            padding: 20px 30px;
-            max-width: 550px;
             box-shadow: 0 0 15px rgba(255, 77, 109, 0.7);
+            max-width: 700px;
+            margin: 20px auto;
             animation: fadeIn 2s ease-in-out;
+        }
+        .contador-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px 20px;
+            border-radius: 12px;
+            min-width: 100px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        .contador-num {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #fff;
+        }
+        .contador-label {
+            margin-top: 8px;
+            font-size: 1.2em;
+            color: #fff;
             font-weight: bold;
             letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-        }
-        #contador::before {
-            content: "❤️";
-            position: absolute;
-            left: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 3em;
-            opacity: 0.3;
-            animation: pulseHeart 2s infinite;
-        }
-        @keyframes pulseHeart {
-            0% { transform: translateY(-50%) scale(1); opacity: 0.3; }
-            50% { transform: translateY(-50%) scale(1.2); opacity: 0.5; }
-            100% { transform: translateY(-50%) scale(1); opacity: 0.3; }
         }
     </style>
 </head>
@@ -177,132 +183,27 @@
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
     </div>
 
-    <!-- Contador -->
-    <div id="contador">Estamos juntos há ... ❤️</div>
+    <!-- Contador SEPARADO -->
+    <div id="contador">
+        <div class="contador-item">
+            <div class="contador-num" id="dias">0</div>
+            <div class="contador-label">Dias</div>
+        </div>
+        <div class="contador-item">
+            <div class="contador-num" id="horas">0</div>
+            <div class="contador-label">Horas</div>
+        </div>
+        <div class="contador-item">
+            <div class="contador-num" id="minutos">0</div>
+            <div class="contador-label">Minutos</div>
+        </div>
+        <div class="contador-item">
+            <div class="contador-num" id="segundos">0</div>
+            <div class="contador-label">Segundos</div>
+        </div>
+    </div>
 
     <!-- Botão principal -->
     <div id="botao-container">
         <button id="verMensagem">💌 Ver mensagem</button>
     </div>
-
-    <!-- Conteúdo revelado -->
-    <div id="conteudo" style="display: none;">
-        <p>
-            Te amo, meu amor.<br>
-            Você faz meus dias mais coloridos, mais cheios de vida e de significado.<br>
-            Essa nossa história de 5 anos e meio não é nem metade do que eu sonho para o nosso futuro juntos — é só o começo de tudo que ainda temos para viver.<br>
-            Nossa jornada não tem sido fácil, eu sei, mas com você ao meu lado tudo se torna mais leve, mais suportável… e me dá forças para seguir em frente, todos os dias.<br>
-            Obrigado por ser meu amor, minha paz e minha inspiração. Quero seguir construindo nossa história, um dia de cada vez, com todo o amor do mundo. ❤️
-        </p>
-
-        <!-- Galeria com flip card -->
-        <div class="gallery">
-            <!-- Foto 1 -->
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img src="images/foto1.jpg" alt="Foto 1" />
-                    </div>
-                    <div class="flip-card-back">
-                        Um dos presentes mais incríveis que você poderia me dar: nosso show do Gusttavo Lima! 🎤❤️
-                    </div>
-                </div>
-            </div>
-            <!-- Foto 2 -->
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img src="images/foto2.jpg" alt="Foto 2" />
-                    </div>
-                    <div class="flip-card-back">
-                        Nossa primeira viagem para a praia juntos... foi tão gostoso passar cada momento com você! 🌊☀️
-                    </div>
-                </div>
-            </div>
-            <!-- Foto 3 -->
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img src="images/foto3.jpg" alt="Foto 3" />
-                    </div>
-                    <div class="flip-card-back">
-                        Tudo na vida com você é espetacular — mas aquele boliche foi simplesmente incrível! 🎳✨
-                    </div>
-                </div>
-            </div>
-            <!-- Foto 4 -->
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img src="images/foto4.jpg" alt="Foto 4" />
-                    </div>
-                    <div class="flip-card-back">
-                        Nossa foto registrando a coisa que eu mais amo fazer: estar ao seu lado. Te amo! ❤️📸
-                    </div>
-                </div>
-            </div>
-            <!-- Foto 5 -->
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img src="images/foto5.jpg" alt="Foto 5" />
-                    </div>
-                    <div class="flip-card-back">
-                        Você não gosta dessa foto... mas eu amo! Te amo, meu amor. 💖
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scripts -->
-    <script>
-        // Corações caindo
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.style.left = Math.random() * window.innerWidth + 'px';
-            heart.style.animationDuration = (Math.random() * 3 + 2) + 's'; // de 2 a 5s
-            heart.innerHTML = '❤️';
-            document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 5000);
-        }
-        setInterval(createHeart, 300);
-
-        // Contador dias + horas + min + seg
-        function atualizarContador() {
-            const dataInicio = new Date(2020, 0, 13, 0, 0, 0); // 13/01/2020 00:00
-            const agora = new Date();
-            const diffMs = agora - dataInicio;
-
-            const totalSegundos = Math.floor(diffMs / 1000);
-            const totalMinutos = Math.floor(totalSegundos / 60);
-            const totalHoras = Math.floor(totalMinutos / 60);
-            const totalDias = Math.floor(totalHoras / 24);
-
-            const horasRestantes = totalHoras % 24;
-            const minutosRestantes = totalMinutos % 60;
-            const segundosRestantes = totalSegundos % 60;
-
-            const contadorEl = document.getElementById('contador');
-            contadorEl.innerText = `Estamos juntos há ${totalDias} dias, ${horasRestantes} horas, ${minutosRestantes} minutos e ${segundosRestantes} segundos ❤️`;
-        }
-
-        setInterval(atualizarContador, 1000);
-        atualizarContador();
-
-        // Mostrar mensagem
-        document.getElementById('verMensagem').addEventListener('click', function() {
-            document.getElementById('botao-container').style.display = 'none';
-            document.getElementById('conteudo').style.display = 'block';
-        });
-
-        // Flip card com clique
-        document.querySelectorAll('.flip-card').forEach(card => {
-            card.addEventListener('click', () => {
-                card.classList.toggle('flipped');
-            });
-        });
-    </script>
-</body>
-</html>
