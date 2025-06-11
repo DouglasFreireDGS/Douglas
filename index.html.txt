@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Te amo ❤️</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff4d6d;
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            line-height: 1.7em;
+            animation: fadeIn 3s ease-in-out;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            animation: fadeIn 4s ease-in-out;
+        }
+        .gallery img {
+            max-width: 280px;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        .video {
+            margin-top: 40px;
+            animation: fadeIn 5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Animação do botão */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        #verMensagem {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+            animation: pulse 1.5s infinite;
+        }
+        #verMensagem:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="botao-container">
+        <button id="verMensagem">💌 Ver mensagem</button>
+    </div>
+
+    <div id="conteudo" style="display: none;">
+        <h1>Te amo ❤️</h1>
+        <p>
+            Te amo, meu amor.<br>
+            Você faz meus dias mais coloridos, mais cheios de vida e de significado.<br>
+            Essa nossa história de 5 anos e meio não é nem metade do que eu sonho para o nosso futuro juntos — é só o começo de tudo que ainda temos para viver.<br>
+            Nossa jornada não tem sido fácil, eu sei, mas com você ao meu lado tudo se torna mais leve, mais suportável… e me dá forças para seguir em frente, todos os dias.<br>
+            Obrigado por ser meu amor, minha paz e minha inspiração. Quero seguir construindo nossa história, um dia de cada vez, com todo o amor do mundo. ❤️
+        </p>
+        <div class="gallery">
+            <img src="images/foto1.jpg" alt="Foto 1" />
+            <img src="images/foto2.jpg" alt="Foto 2" />
+            <img src="images/foto3.jpg" alt="Foto 3" />
+            <img src="images/foto4.jpg" alt="Foto 4" />
+            <img src="images/foto5.jpg" alt="Foto 5" />
+        </div>
+        <div class="video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/mYurQ5ISswE?autoplay=1&mute=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('verMensagem').addEventListener('click', function() {
+            document.getElementById('botao-container').style.display = 'none';
+            document.getElementById('conteudo').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
