@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Feliz Dia dos Namorados, Débora ❤️</title>
+
+    <!-- Fonte manuscrita para a mensagem -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
     <style>
         body {
             background-color: #0d0d0d;
@@ -19,11 +23,15 @@
             margin-bottom: 20px;
             animation: fadeIn 2s ease-in-out;
         }
-        p {
-            font-size: 1.3em;
+        /* Mensagem com fonte manuscrita */
+        #conteudo p {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8em;
+            line-height: 1.6em;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
             max-width: 800px;
             margin: 0 auto 40px auto;
-            line-height: 1.7em;
             animation: fadeIn 3s ease-in-out;
         }
         .gallery {
@@ -223,6 +231,7 @@
     <div id="botao-container">
         <button id="verMensagem">💌 Ver mensagem</button>
     </div>
+
 
         <!-- Conteúdo revelado -->
     <div id="conteudo" style="display: none;">
