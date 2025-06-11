@@ -140,7 +140,7 @@
             background: linear-gradient(135deg, #ff4d6d, #ff99aa);
             border-radius: 16px;
             padding: 20px 30px;
-            max-width: 450px;
+            max-width: 550px;
             box-shadow: 0 0 15px rgba(255, 77, 109, 0.7);
             animation: fadeIn 2s ease-in-out;
             font-weight: bold;
@@ -179,7 +179,7 @@
     </div>
 
     <!-- Contador -->
-    <div id="contador">Estamos juntos há ... dias ❤️</div>
+    <div id="contador">Estamos juntos há ... ❤️</div>
 
     <!-- Botão principal -->
     <div id="botao-container">
@@ -270,29 +270,26 @@
         }
         setInterval(createHeart, 300);
 
-        // Contador dinâmico com animação
-        function animateCounter(element, start, end, duration) {
-            let startTime = null;
-            function animation(currentTime) {
-                if (startTime === null) startTime = currentTime;
-                const progress = Math.min((currentTime - startTime) / duration, 1);
-                const value = Math.floor(progress * (end - start) + start);
-                element.innerText = `Estamos juntos há ${value} dias ❤️`;
-                if (progress < 1) {
-                    requestAnimationFrame(animation);
-                }
-            }
-            requestAnimationFrame(animation);
+        // Contador dias + horas + min + seg
+        function atualizarContador() {
+            const dataInicio = new Date(2020, 0, 13, 0, 0, 0); // 13/01/2020 00:00
+            const agora = new Date();
+            const diffMs = agora - dataInicio;
+
+            const totalSegundos = Math.floor(diffMs / 1000);
+            const totalMinutos = Math.floor(totalSegundos / 60);
+            const totalHoras = Math.floor(totalMinutos / 60);
+            const totalDias = Math.floor(totalHoras / 24);
+
+            const horasRestantes = totalHoras % 24;
+            const minutosRestantes = totalMinutos % 60;
+            const segundosRestantes = totalSegundos % 60;
+
+            const contadorEl = document.getElementById('contador');
+            contadorEl.innerText = `Estamos juntos há ${totalDias} dias, ${horasRestantes} horas, ${minutosRestantes} minutos e ${segundosRestantes} segundos ❤️`;
         }
 
-        function atualizarContador() {
-            const dataInicio = new Date(2020, 0, 13); // Janeiro = 0
-            const hoje = new Date();
-            const diffTime = Math.abs(hoje - dataInicio);
-            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-            const contadorEl = document.getElementById('contador');
-            animateCounter(contadorEl, 0, diffDays, 1500); // 1.5s de animação
-        }
+        setInterval(atualizarContador, 1000);
         atualizarContador();
 
         // Mostrar mensagem
