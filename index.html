@@ -11,6 +11,7 @@
             font-family: 'Arial', sans-serif;
             text-align: center;
             padding: 20px;
+            overflow-x: hidden;
         }
         h1 {
             color: #ff4d6d;
@@ -72,10 +73,43 @@
         #verMensagem:hover {
             transform: scale(1.1);
         }
+
+        /* Corações caindo */
+        .heart {
+            position: fixed;
+            top: -50px;
+            color: #ff4d6d;
+            font-size: 30px;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -50px;
+                opacity: 1;
+                transform: translateX(0) rotate(0deg);
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+                transform: translateX(100px) rotate(360deg);
+            }
+        }
+
+        /* Contador */
+        #contador {
+            font-size: 1.5em;
+            margin: 20px 0;
+            color: #ff99aa;
+            animation: fadeIn 3s ease-in-out;
+        }
     </style>
 </head>
 <body>
     <h1>Feliz Dia dos Namorados, Débora ❤️</h1>
+
+    <!-- Contador de dias -->
+    <div id="contador">Estamos juntos há ... dias ❤️</div>
 
     <div id="botao-container">
         <button id="verMensagem">💌 Ver mensagem</button>
@@ -97,11 +131,44 @@
             <img src="images/foto5.jpg" alt="Foto 5" />
         </div>
         <div class="video">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/mYurQ5ISswE?autoplay=1&mute=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe style="border-radius:12px" 
+                    src="https://open.spotify.com/embed/track/5aLvtKo9672scTVdEwXPTg?utm_source=generator" 
+                    width="300" height="380" 
+                    frameborder="0" 
+                    allowfullscreen="" 
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
         </div>
     </div>
 
+    <!-- Corações -->
     <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's'; // de 2 a 5s
+            heart.innerHTML = '❤️';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+
+        // Contador de dias
+        function atualizarContador() {
+            const dataInicio = new Date(2020, 0, 13); // Janeiro é mês 0
+            const hoje = new Date();
+            const diffTime = Math.abs(hoje - dataInicio);
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            document.getElementById('contador').innerText = `Estamos juntos há ${diffDays} dias ❤️`;
+        }
+
+        atualizarContador();
+
+        // Botão de revelar mensagem
         document.getElementById('verMensagem').addEventListener('click', function() {
             document.getElementById('botao-container').style.display = 'none';
             document.getElementById('conteudo').style.display = 'block';
