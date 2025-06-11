@@ -6,7 +6,7 @@
     <title>Te amo ❤️</title>
     <style>
         body {
-            background-color: #111;
+            background-color: #0d0d0d;
             color: #fff;
             font-family: 'Arial', sans-serif;
             text-align: center;
@@ -14,30 +14,42 @@
         }
         h1 {
             color: #ff4d6d;
-            font-size: 2.5em;
+            font-size: 3em;
             margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
         }
         p {
-            font-size: 1.2em;
+            font-size: 1.3em;
             max-width: 800px;
             margin: 0 auto 40px auto;
-            line-height: 1.6em;
+            line-height: 1.7em;
+            animation: fadeIn 3s ease-in-out;
         }
         .gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
+            animation: fadeIn 4s ease-in-out;
         }
         .gallery img {
-            max-width: 300px;
+            max-width: 280px;
             width: 100%;
             height: auto;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
         }
         .video {
             margin-top: 40px;
+            animation: fadeIn 5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
