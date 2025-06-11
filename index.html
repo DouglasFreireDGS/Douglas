@@ -81,6 +81,7 @@
             color: #ff4d6d;
             font-size: 30px;
             animation: fall 5s linear infinite;
+            z-index: 9999;
         }
 
         @keyframes fall {
@@ -96,12 +97,34 @@
             }
         }
 
-        /* Contador */
+        /* Contador em quadro bonito */
         #contador {
             font-size: 1.5em;
-            margin: 20px 0;
+            margin: 20px auto;
             color: #ff99aa;
+            background-color: rgba(255, 77, 109, 0.1);
+            border: 2px solid #ff4d6d;
+            border-radius: 12px;
+            padding: 15px 25px;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
             animation: fadeIn 3s ease-in-out;
+        }
+
+        /* Botão som */
+        #botaoSom {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+        }
+        #botaoSom:hover {
+            background-color: #ff6680;
         }
     </style>
 </head>
@@ -111,6 +134,10 @@
     <!-- Contador de dias -->
     <div id="contador">Estamos juntos há ... dias ❤️</div>
 
+    <!-- Botão para ativar som -->
+    <button id="botaoSom">Ativar som de coração ❤️</button>
+
+    <!-- Botão principal -->
     <div id="botao-container">
         <button id="verMensagem">💌 Ver mensagem</button>
     </div>
@@ -140,7 +167,13 @@
         </div>
     </div>
 
-    <!-- Corações -->
+    <!-- Audio do coração -->
+    <audio id="somCoracao" loop>
+        <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_896b667ada.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+    </audio>
+
+    <!-- Corações caindo + scripts -->
     <script>
         function createHeart() {
             const heart = document.createElement('div');
@@ -168,10 +201,18 @@
 
         atualizarContador();
 
-        // Botão de revelar mensagem
+        // Botão revelar mensagem
         document.getElementById('verMensagem').addEventListener('click', function() {
             document.getElementById('botao-container').style.display = 'none';
             document.getElementById('conteudo').style.display = 'block';
+        });
+
+        // Botão som de coração
+        document.getElementById('botaoSom').addEventListener('click', function() {
+            const audio = document.getElementById('somCoracao');
+            audio.play();
+            document.getElementById('botaoSom').innerText = 'Som ativado ❤️';
+            document.getElementById('botaoSom').disabled = true;
         });
     </script>
 </body>
