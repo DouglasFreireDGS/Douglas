@@ -119,6 +119,21 @@
         #verMensagem:hover {
             transform: scale(1.1);
         }
+        /* Botão play música */
+        #playPauseBtn {
+            margin: 15px;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            background-color: #ff4d6d;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        #playPauseBtn:hover {
+            transform: scale(1.05);
+        }
         /* Corações caindo */
         .heart {
             position: fixed;
@@ -191,16 +206,14 @@
 <body>
     <h1>Feliz Dia dos Namorados, Débora ❤️</h1>
 
-    <!-- Spotify player NOVO -->
-    <div class="video">
-        <iframe style="border-radius:12px" 
-                src="https://open.spotify.com/embed/track/1L7hWEc3tVjvmbw48ShktM?utm_source=generator" 
-                width="100%" height="352" 
-                frameborder="0" 
-                allowfullscreen="" 
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy"></iframe>
-    </div>
+    <!-- Botão de play da música -->
+    <button id="playPauseBtn">▶️ Tocar música</button>
+
+    <!-- Player de áudio invisível -->
+    <audio id="audioPlayer" loop>
+        <source src="teamo.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
 
     <!-- Contador SEPARADO com frase + anos -->
     <div id="contador">
@@ -233,9 +246,7 @@
     <div id="botao-container">
         <button id="verMensagem">💌 Ver mensagem</button>
     </div>
-
-
-        <!-- Conteúdo revelado -->
+    <!-- Conteúdo revelado -->
     <div id="conteudo" style="display: none;">
         <p>
             Te amo, meu amor.<br>
@@ -307,6 +318,20 @@
 
     <!-- Scripts -->
     <script>
+        // Botão de play/pausa da música
+        const audioPlayer = document.getElementById('audioPlayer');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+
+        playPauseBtn.addEventListener('click', function() {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playPauseBtn.innerHTML = '⏸️ Pausar música';
+            } else {
+                audioPlayer.pause();
+                playPauseBtn.innerHTML = '▶️ Tocar música';
+            }
+        });
+
         // Corações caindo
         function createHeart() {
             const heart = document.createElement('div');
