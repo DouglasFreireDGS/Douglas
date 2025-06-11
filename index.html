@@ -207,3 +207,126 @@
     <div id="botao-container">
         <button id="verMensagem">💌 Ver mensagem</button>
     </div>
+    <!-- Conteúdo revelado -->
+    <div id="conteudo" style="display: none;">
+        <p>
+            Te amo, meu amor.<br>
+            Você faz meus dias mais coloridos, mais cheios de vida e de significado.<br>
+            Essa nossa história de 5 anos e meio não é nem metade do que eu sonho para o nosso futuro juntos — é só o começo de tudo que ainda temos para viver.<br>
+            Nossa jornada não tem sido fácil, eu sei, mas com você ao meu lado tudo se torna mais leve, mais suportável… e me dá forças para seguir em frente, todos os dias.<br>
+            Obrigado por ser meu amor, minha paz e minha inspiração. Quero seguir construindo nossa história, um dia de cada vez, com todo o amor do mundo. ❤️
+        </p>
+
+        <!-- Galeria com flip card -->
+        <div class="gallery">
+            <!-- Foto 1 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/foto1.jpg" alt="Foto 1" />
+                    </div>
+                    <div class="flip-card-back">
+                        Um dos presentes mais incríveis que você poderia me dar: nosso show do Gusttavo Lima! 🎤❤️
+                    </div>
+                </div>
+            </div>
+            <!-- Foto 2 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/foto2.jpg" alt="Foto 2" />
+                    </div>
+                    <div class="flip-card-back">
+                        Nossa primeira viagem para a praia juntos... foi tão gostoso passar cada momento com você! 🌊☀️
+                    </div>
+                </div>
+            </div>
+            <!-- Foto 3 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/foto3.jpg" alt="Foto 3" />
+                    </div>
+                    <div class="flip-card-back">
+                        Tudo na vida com você é espetacular — mas aquele boliche foi simplesmente incrível! 🎳✨
+                    </div>
+                </div>
+            </div>
+            <!-- Foto 4 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/foto4.jpg" alt="Foto 4" />
+                    </div>
+                    <div class="flip-card-back">
+                        Nossa foto registrando a coisa que eu mais amo fazer: estar ao seu lado. Te amo! ❤️📸
+                    </div>
+                </div>
+            </div>
+            <!-- Foto 5 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/foto5.jpg" alt="Foto 5" />
+                    </div>
+                    <div class="flip-card-back">
+                        Você não gosta dessa foto... mas eu amo! Te amo, meu amor. 💖
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Corações caindo
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's'; // de 2 a 5s
+            heart.innerHTML = '❤️';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHeart, 300);
+
+        // Contador dias + horas + min + seg
+        function atualizarContador() {
+            const dataInicio = new Date(2020, 0, 13, 0, 0, 0); // 13/01/2020 00:00
+            const agora = new Date();
+            const diffMs = agora - dataInicio;
+
+            const totalSegundos = Math.floor(diffMs / 1000);
+            const totalMinutos = Math.floor(totalSegundos / 60);
+            const totalHoras = Math.floor(totalMinutos / 60);
+            const totalDias = Math.floor(totalHoras / 24);
+
+            const horasRestantes = totalHoras % 24;
+            const minutosRestantes = totalMinutos % 60;
+            const segundosRestantes = totalSegundos % 60;
+
+            document.getElementById('dias').innerText = totalDias;
+            document.getElementById('horas').innerText = horasRestantes;
+            document.getElementById('minutos').innerText = minutosRestantes;
+            document.getElementById('segundos').innerText = segundosRestantes;
+        }
+
+        setInterval(atualizarContador, 1000);
+        atualizarContador();
+
+        // Mostrar mensagem
+        document.getElementById('verMensagem').addEventListener('click', function() {
+            document.getElementById('botao-container').style.display = 'none';
+            document.getElementById('conteudo').style.display = 'block';
+        });
+
+        // Flip card com clique
+        document.querySelectorAll('.flip-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('flipped');
+            });
+        });
+    </script>
+</body>
+</html>
