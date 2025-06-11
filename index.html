@@ -83,7 +83,7 @@
             transform: rotateY(180deg);
         }
         .video {
-            margin-top: 40px;
+            margin-top: 10px;
             animation: fadeIn 5s ease-in-out;
         }
         @keyframes fadeIn {
@@ -132,44 +132,54 @@
                 transform: translateX(100px) rotate(360deg);
             }
         }
-        /* Contador */
+        /* Contador dinâmico bonito */
         #contador {
-            font-size: 1.5em;
+            font-size: 2em;
             margin: 20px auto;
-            color: #ff99aa;
-            background-color: rgba(255, 77, 109, 0.1);
-            border: 2px solid #ff4d6d;
-            border-radius: 12px;
-            padding: 15px 25px;
-            max-width: 400px;
-            box-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
-            animation: fadeIn 3s ease-in-out;
+            color: #fff;
+            background: linear-gradient(135deg, #ff4d6d, #ff99aa);
+            border-radius: 16px;
+            padding: 20px 30px;
+            max-width: 450px;
+            box-shadow: 0 0 15px rgba(255, 77, 109, 0.7);
+            animation: fadeIn 2s ease-in-out;
+            font-weight: bold;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
         }
-        /* Botão som */
-        #botaoSom {
-            padding: 10px 20px;
-            font-size: 1em;
-            background-color: #ff4d6d;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            margin-bottom: 15px;
+        #contador::before {
+            content: "❤️";
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3em;
+            opacity: 0.3;
+            animation: pulseHeart 2s infinite;
         }
-        #botaoSom:hover {
-            background-color: #ff6680;
+        @keyframes pulseHeart {
+            0% { transform: translateY(-50%) scale(1); opacity: 0.3; }
+            50% { transform: translateY(-50%) scale(1.2); opacity: 0.5; }
+            100% { transform: translateY(-50%) scale(1); opacity: 0.3; }
         }
     </style>
 </head>
 <body>
     <h1>Feliz Dia dos Namorados, Débora ❤️</h1>
 
+    <!-- Spotify player no topo -->
+    <div class="video">
+        <iframe style="border-radius:12px" 
+                src="https://open.spotify.com/embed/track/5aLvtKo9672scTVdEwXPTg?utm_source=generator" 
+                width="300" height="380" 
+                frameborder="0" 
+                allowfullscreen="" 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+
     <!-- Contador -->
     <div id="contador">Estamos juntos há ... dias ❤️</div>
-
-    <!-- Botão som -->
-    <button id="botaoSom">Ativar som de coração ❤️</button>
 
     <!-- Botão principal -->
     <div id="botao-container">
@@ -244,23 +254,7 @@
                 </div>
             </div>
         </div>
-
-        <!-- Spotify player -->
-        <div class="video">
-            <iframe style="border-radius:12px" 
-                    src="https://open.spotify.com/embed/track/5aLvtKo9672scTVdEwXPTg?utm_source=generator" 
-                    width="300" height="380" 
-                    frameborder="0" 
-                    allowfullscreen="" 
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-        </div>
     </div>
-
-    <!-- Som coração -->
-    <audio id="somCoracao" loop>
-        <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_896b667ada.mp3" type="audio/mpeg">
-        Seu navegador não suporta áudio.
-    </audio>
 
     <!-- Scripts -->
     <script>
@@ -276,13 +270,28 @@
         }
         setInterval(createHeart, 300);
 
-        // Contador de dias
+        // Contador dinâmico com animação
+        function animateCounter(element, start, end, duration) {
+            let startTime = null;
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const progress = Math.min((currentTime - startTime) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.innerText = `Estamos juntos há ${value} dias ❤️`;
+                if (progress < 1) {
+                    requestAnimationFrame(animation);
+                }
+            }
+            requestAnimationFrame(animation);
+        }
+
         function atualizarContador() {
-            const dataInicio = new Date(2020, 0, 13); // Janeiro é 0
+            const dataInicio = new Date(2020, 0, 13); // Janeiro = 0
             const hoje = new Date();
             const diffTime = Math.abs(hoje - dataInicio);
             const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-            document.getElementById('contador').innerText = `Estamos juntos há ${diffDays} dias ❤️`;
+            const contadorEl = document.getElementById('contador');
+            animateCounter(contadorEl, 0, diffDays, 1500); // 1.5s de animação
         }
         atualizarContador();
 
@@ -290,14 +299,6 @@
         document.getElementById('verMensagem').addEventListener('click', function() {
             document.getElementById('botao-container').style.display = 'none';
             document.getElementById('conteudo').style.display = 'block';
-        });
-
-        // Ativar som
-        document.getElementById('botaoSom').addEventListener('click', function() {
-            const audio = document.getElementById('somCoracao');
-            audio.play();
-            document.getElementById('botaoSom').innerText = 'Som ativado ❤️';
-            document.getElementById('botaoSom').disabled = true;
         });
 
         // Flip card com clique
