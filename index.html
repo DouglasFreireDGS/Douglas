@@ -32,17 +32,55 @@
             justify-content: center;
             gap: 15px;
             animation: fadeIn 4s ease-in-out;
+            margin-top: 20px;
         }
-        .gallery img {
-            max-width: 280px;
+        /* Flip card */
+        .flip-card {
+            background-color: transparent;
+            width: 280px;
+            height: 320px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .flip-card-inner {
+            position: relative;
             width: 100%;
-            height: auto;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2);
             border-radius: 12px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s;
         }
-        .gallery img:hover {
-            transform: scale(1.05);
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+        }
+        .flip-card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        .flip-card-back {
+            background-color: #ff4d6d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-size: 1.2em;
+            transform: rotateY(180deg);
+            font-style: italic;
+            text-align: center;
+            line-height: 1.5em;
+        }
+        .flip-card:hover .flip-card-inner,
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
         }
         .video {
             margin-top: 40px;
@@ -52,7 +90,7 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /* Animação do botão */
+        /* Botão */
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -73,7 +111,6 @@
         #verMensagem:hover {
             transform: scale(1.1);
         }
-
         /* Corações caindo */
         .heart {
             position: fixed;
@@ -83,7 +120,6 @@
             animation: fall 5s linear infinite;
             z-index: 9999;
         }
-
         @keyframes fall {
             0% {
                 top: -50px;
@@ -96,8 +132,7 @@
                 transform: translateX(100px) rotate(360deg);
             }
         }
-
-        /* Contador em quadro bonito */
+        /* Contador */
         #contador {
             font-size: 1.5em;
             margin: 20px auto;
@@ -110,7 +145,6 @@
             box-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
             animation: fadeIn 3s ease-in-out;
         }
-
         /* Botão som */
         #botaoSom {
             padding: 10px 20px;
@@ -131,10 +165,10 @@
 <body>
     <h1>Feliz Dia dos Namorados, Débora ❤️</h1>
 
-    <!-- Contador de dias -->
+    <!-- Contador -->
     <div id="contador">Estamos juntos há ... dias ❤️</div>
 
-    <!-- Botão para ativar som -->
+    <!-- Botão som -->
     <button id="botaoSom">Ativar som de coração ❤️</button>
 
     <!-- Botão principal -->
@@ -142,6 +176,7 @@
         <button id="verMensagem">💌 Ver mensagem</button>
     </div>
 
+    <!-- Conteúdo revelado -->
     <div id="conteudo" style="display: none;">
         <p>
             Te amo, meu amor.<br>
@@ -150,13 +185,67 @@
             Nossa jornada não tem sido fácil, eu sei, mas com você ao meu lado tudo se torna mais leve, mais suportável… e me dá forças para seguir em frente, todos os dias.<br>
             Obrigado por ser meu amor, minha paz e minha inspiração. Quero seguir construindo nossa história, um dia de cada vez, com todo o amor do mundo. ❤️
         </p>
+
+        <!-- Galeria com flip card -->
         <div class="gallery">
-            <img src="images/foto1.jpg" alt="Foto 1" />
-            <img src="images/foto2.jpg" alt="Foto 2" />
-            <img src="images/foto3.jpg" alt="Foto 3" />
-            <img src="images/foto4.jpg" alt="Foto 4" />
-            <img src="images/foto5.jpg" alt="Foto 5" />
+            <!-- Foto 1 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/foto1.jpg" alt="Foto 1" />
+                    </div>
+                    <div class="flip-card-back">
+                        Um dos presentes mais incríveis que você poderia me dar: nosso show do Gusttavo Lima! 🎤❤️
+                    </div>
+                </div>
+            </div>
+            <!-- Foto 2 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/foto2.jpg" alt="Foto 2" />
+                    </div>
+                    <div class="flip-card-back">
+                        Nossa primeira viagem para a praia juntos... foi tão gostoso passar cada momento com você! 🌊☀️
+                    </div>
+                </div>
+            </div>
+            <!-- Foto 3 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/foto3.jpg" alt="Foto 3" />
+                    </div>
+                    <div class="flip-card-back">
+                        Tudo na vida com você é espetacular — mas aquele boliche foi simplesmente incrível! 🎳✨
+                    </div>
+                </div>
+            </div>
+            <!-- Foto 4 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/foto4.jpg" alt="Foto 4" />
+                    </div>
+                    <div class="flip-card-back">
+                        Nossa foto registrando a coisa que eu mais amo fazer: estar ao seu lado. Te amo! ❤️📸
+                    </div>
+                </div>
+            </div>
+            <!-- Foto 5 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/foto5.jpg" alt="Foto 5" />
+                    </div>
+                    <div class="flip-card-back">
+                        Você não gosta dessa foto... mas eu amo! Te amo, meu amor. 💖
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!-- Spotify player -->
         <div class="video">
             <iframe style="border-radius:12px" 
                     src="https://open.spotify.com/embed/track/5aLvtKo9672scTVdEwXPTg?utm_source=generator" 
@@ -167,14 +256,15 @@
         </div>
     </div>
 
-    <!-- Audio do coração -->
+    <!-- Som coração -->
     <audio id="somCoracao" loop>
         <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_896b667ada.mp3" type="audio/mpeg">
         Seu navegador não suporta áudio.
     </audio>
 
-    <!-- Corações caindo + scripts -->
+    <!-- Scripts -->
     <script>
+        // Corações caindo
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
@@ -182,37 +272,39 @@
             heart.style.animationDuration = (Math.random() * 3 + 2) + 's'; // de 2 a 5s
             heart.innerHTML = '❤️';
             document.body.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
+            setTimeout(() => { heart.remove(); }, 5000);
         }
-
         setInterval(createHeart, 300);
 
         // Contador de dias
         function atualizarContador() {
-            const dataInicio = new Date(2020, 0, 13); // Janeiro é mês 0
+            const dataInicio = new Date(2020, 0, 13); // Janeiro é 0
             const hoje = new Date();
             const diffTime = Math.abs(hoje - dataInicio);
             const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
             document.getElementById('contador').innerText = `Estamos juntos há ${diffDays} dias ❤️`;
         }
-
         atualizarContador();
 
-        // Botão revelar mensagem
+        // Mostrar mensagem
         document.getElementById('verMensagem').addEventListener('click', function() {
             document.getElementById('botao-container').style.display = 'none';
             document.getElementById('conteudo').style.display = 'block';
         });
 
-        // Botão som de coração
+        // Ativar som
         document.getElementById('botaoSom').addEventListener('click', function() {
             const audio = document.getElementById('somCoracao');
             audio.play();
             document.getElementById('botaoSom').innerText = 'Som ativado ❤️';
             document.getElementById('botaoSom').disabled = true;
+        });
+
+        // Flip card com clique
+        document.querySelectorAll('.flip-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('flipped');
+            });
         });
     </script>
 </body>
